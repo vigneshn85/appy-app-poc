@@ -1,6 +1,7 @@
 appyApp/.classpath
 appyApp/.project
 appyApp/.settings/
+appyApp/target/
 #eclipse related
 .metadata/
 Servers/
