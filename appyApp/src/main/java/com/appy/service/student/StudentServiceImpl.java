@@ -1,41 +1,45 @@
 package com.appy.service.student;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.appy.dao.IStudentDAO;
 import com.appy.domain.StudentVO;
 
 public class StudentServiceImpl implements IStudentService{
 
+	private IStudentDAO studentDAO ;
 	public StudentServiceImpl(){
 		super();
 	}
-	//TODO: user DB
-	private static Map<String, StudentVO> studentDB = new HashMap<String, StudentVO>();
-	
 	public boolean addStudent(StudentVO student) {
-		String studentId = student.getStudentId();
-		if(StudentServiceImpl.studentDB.containsKey(studentId))
-			return false;
-		StudentServiceImpl.studentDB.put(studentId, student);
+		studentDAO.addStudent(student);
+		System.out.println("Added student");
 		return true;		
 	}
 
 	public StudentVO findStudent(String studentId) {
-		return StudentServiceImpl.studentDB.get(studentId);
+		System.out.println("Finding student by id.."+studentId);
+		StudentVO student = studentDAO.findStudentById(studentId);
+		System.out.println("Received Student info from DB:" + student );
+		return student;
 	}
 	
 	public List<StudentVO> getStudents(){
-		Set<String> set = StudentServiceImpl.studentDB.keySet();
-		List<StudentVO> studentList = new ArrayList<StudentVO>();
-		for(String key : set){
-			studentList.add(StudentServiceImpl.studentDB.get(key));
-		}
-		return studentList;
-		
+		System.out.println("In getStudents..");
+		return studentDAO.findAllStudents();
 	}
 
+	public IStudentDAO getStudentDAO() {
+		return studentDAO;
+	}
+
+	@Autowired
+	public void setStudentDAO(IStudentDAO studentDAO) {
+		System.out.println("in setStudentAO");
+		this.studentDAO = studentDAO;
+	}
+
+	
 }
