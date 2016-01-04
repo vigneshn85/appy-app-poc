@@ -2,6 +2,7 @@ package com.appy.endpoint.student.client;
 
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -15,21 +16,22 @@ import com.sun.jersey.api.client.WebResource;
 public class StudentServiceClient {
 	private String studentServiceEndPoint = "http://localhost:8080/appyApp/rest/studentApi/student";
 	private String contentType = "application/json";
-	private void getAllStudents(){
-		Client client = Client.create();
-		WebResource webResource = client
-				   .resource(studentServiceEndPoint);
+	
+	final Logger log = Logger.getLogger(StudentServiceClient.class);
+	
+	private void getAllStudents(){		
 		
-		ClientResponse response = webResource.type(contentType)
-                .get(ClientResponse.class);
+		Client client = Client.create();
+		WebResource webResource = client.resource(studentServiceEndPoint);
+		
+		ClientResponse response = webResource.type(contentType).get(ClientResponse.class);
 		String studentOutput = response.getEntity(String.class);
-		System.out.println("Student output:"+studentOutput);
+		log.info("Student output:"+studentOutput);
 	}
 	
 	private void addStudent(){
 		Client client = Client.create();
-		WebResource webResource = client
-				   .resource(studentServiceEndPoint);
+		WebResource webResource = client.resource(studentServiceEndPoint);
 		Address address = new Address("2101", "westford", "MA", "01886");
 		StudentVO studentObj = new StudentVO("1", "vignesh", "natesan", address);
 		String input = "";
@@ -45,19 +47,16 @@ public class StudentServiceClient {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Creating student::" + input);
-		ClientResponse response = webResource.type(contentType)
-                .post(ClientResponse.class, input);
+		log.info("Creating student::" + input);
+		ClientResponse response = webResource.type(contentType).post(ClientResponse.class, input);
 	}
 	
 	private void getStudentById(String studentId){
 		Client client = Client.create();
-		WebResource webResource = client
-				   .resource(studentServiceEndPoint+"1"); //student created by addStudent()
-		ClientResponse response = webResource.type(contentType)
-                .get(ClientResponse.class);
+		WebResource webResource = client .resource(studentServiceEndPoint+"1"); //student created by addStudent()
+		ClientResponse response = webResource.type(contentType).get(ClientResponse.class);
 		String studentOutput = response.getEntity(String.class);
-		System.out.println("Student out for Student ID - 1: " + studentOutput);
+		log.info("Student out for Student ID - 1: " + studentOutput);
 	}
 	
 	StudentServiceClient(){		
