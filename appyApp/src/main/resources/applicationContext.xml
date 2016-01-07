@@ -8,11 +8,11 @@
 
 	<context:annotation-config /> <!-- Looks for the Annotations -->
 
-	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location">
-			<value>classpath:connection.properties</value>
-		</property>
-	</bean>
+	<context:property-placeholder location="classpath:connection.properties,
+											classpath:messages_en_US.properties" />
+	<!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+		<property name="locations"> <list> <value>classpath:connection.properties</value> 
+		<value>messages_en_US.properties</value> </list> </property> </bean> -->
 
 	<!-- End point beans -->
 	<bean id="studentServiceEndpoint" class="com.appy.endpoint.student.StudentService" />

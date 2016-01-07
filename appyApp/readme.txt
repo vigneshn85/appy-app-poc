@@ -2,7 +2,7 @@ Setup DB schema in MySQL (local dev only)
 	1. Create schema by name: appy_poc
 	2. Create a root user with password: password
 ------------------------------------------------
-To set up the DB connection
+To set up the DB connection (Reference: http://www.journaldev.com/2597/spring-datasource-jndi-with-tomcat-example)
 ------------------------------------------------
 Step1:
 	Add the below code to the ${catalina.base}/conf/server.xml file under the <GlobalNamingResources> tag. This will configure

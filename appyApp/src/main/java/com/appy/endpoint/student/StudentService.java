@@ -16,6 +16,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.appy.domain.StudentVO;
+import com.appy.exception.BaseException;
+import com.appy.exception.ExceptionCodes;
 import com.appy.service.student.IStudentService;
 
 @Path("/studentApi")
@@ -42,7 +44,12 @@ public class StudentService {
 	@Path("/student/{studentId}")
 	public Response getStudent(@PathParam("studentId")String studentId){
 		System.out.println("Student ID:"+studentId);
-		return Response.status(200).entity(studentService.findStudent(studentId)).build();
+		StudentVO studentObj = studentService.findStudent(studentId);
+		if(studentObj == null){
+			BaseException baseException = new BaseException(ExceptionCodes.APP_CODE_0001);			
+			return Response.status(203).entity(baseException).build(); //TODO:check the correct code
+		}		
+		return Response.status(200).entity(studentObj).build();
 	}
 	
 	@GET
