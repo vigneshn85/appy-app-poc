@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.appy.dao.rowMapper.StudentRowMapper;
@@ -64,6 +65,7 @@ public class StudentDAOImpl implements IStudentDAO {
 	public DataSource getDataSource() {
 		return dataSource;
 	}
+	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}

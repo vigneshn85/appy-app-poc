@@ -7,7 +7,7 @@
 	
 	<!-- DAO -->
 	<bean id="studentDAO" class="com.appy.dao.StudentDAOImpl">
-		<property name="dataSource" ref="dataSource" />
+		<!-- <property name="dataSource" ref="dataSource" /> -->
 	</bean>
 	
 	<!-- Datasource -->
