@@ -18,14 +18,11 @@
 	<bean id="studentServiceEndpoint" class="com.appy.endpoint.student.StudentService" />
 	<bean id="loginServiceEndpoint" class="com.appy.endpoint.user.login.LoginService" />
 
-	<!-- Dependency beans -->
+	<!-- Dependency Service beans -->
 	<bean id="studentService" class="com.appy.service.student.StudentServiceImpl" />
-
-	<bean id="userService" class="com.appy.service.user.login.UserServiceImpl" />
+	<bean id="userService" class="com.appy.service.user.UserServiceImpl" />
 
 	<!-- Import other bean configuration files -->
 	<import resource="spring-dao-config.xml" />
-
-
 
 </beans>
