@@ -17,4 +17,11 @@ public class UserObjectTransformer {
 		userVO.setEmail(new String(userFormBO.getEmail()));
 		userVO.setPassword(new String(userFormBO.getPassword())); // TODO: Check if the hash should be generated here or in filter itself
 	}
+	
+	public static void createUserVOForUserInfoUpdate(UserFormBO userFormBO, UserVO userVO){
+		userVO.setFirstname(new String(userFormBO.getFirstname()));
+		userVO.setLastname(new String(userFormBO.getLastname()));
+		userVO.setEmail(new String(userFormBO.getEmail()));
+		userVO.setUserId(userFormBO.getUserId());
+	}
 }

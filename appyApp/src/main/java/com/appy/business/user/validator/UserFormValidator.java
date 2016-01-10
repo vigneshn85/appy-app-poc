@@ -14,4 +14,11 @@ public class UserFormValidator {
 				StringUtils.equals(userSignupForm.getPassword(), userSignupForm.getConfirmPassword()) &&			
 				StringUtils.isNotBlank(userSignupForm.getEmail());
 	}
+	
+	public static boolean isUserUpdateInfoFormValid(UserFormBO updateUserInfoForm){
+		return 	updateUserInfoForm.getUserId() != -1 &&
+				StringUtils.isNotBlank(updateUserInfoForm.getFirstname()) &&
+				StringUtils.isNotBlank(updateUserInfoForm.getLastname()) &&
+				StringUtils.isNotBlank(updateUserInfoForm.getEmail());
+	}
 }

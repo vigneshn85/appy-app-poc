@@ -6,6 +6,7 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 
+//TODO: Should be renamed as Error Response
 public class BaseException {
 
 	Logger LOGGER = Logger.getLogger(BaseException.class);
@@ -26,6 +27,8 @@ public class BaseException {
 	public BaseException(ExceptionCodes code) {
 		this();
 		this.code = code;
+		LOGGER.debug("Code:" + code.name());
+		LOGGER.debug("message:" + messages.getProperty(code.name()));
 		this.message = messages.getProperty(code.name());
 	}
 

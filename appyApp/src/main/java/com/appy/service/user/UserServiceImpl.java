@@ -3,11 +3,14 @@ package com.appy.service.user;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.appy.business.user.exception.UserException;
 import com.appy.business.user.form.UserFormBO;
 import com.appy.business.user.form.transformer.UserObjectTransformer;
 import com.appy.business.user.validator.UserFormValidator;
 import com.appy.dao.user.IUserDAO;
 import com.appy.domain.user.UserVO;
+import com.appy.exception.BaseException;
+import com.appy.exception.ExceptionCodes;
 
 public class UserServiceImpl implements IUserService{
 	private static Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
@@ -25,6 +28,20 @@ public class UserServiceImpl implements IUserService{
 			}
 		}
 		return true;
+	}
+	
+	public boolean updateUserInfo(UserFormBO userUpdateInfoForm) throws UserException{
+		LOGGER.debug("In user info");
+		if(UserFormValidator.isUserUpdateInfoFormValid(userUpdateInfoForm)){
+			UserVO userVO = new UserVO();			
+			UserObjectTransformer.createUserVOForUserInfoUpdate(userUpdateInfoForm, userVO); // copy contents from Form
+		
+			if(userDAO.updateUserInfo(userVO))
+				LOGGER.debug("User info updated successfully");
+			return true;
+		}
+		
+		throw new UserException("UPDATE", "FORM_INVALID");
 	}
 	
 	public IUserDAO getUserDAO() {
