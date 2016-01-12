@@ -1,7 +1,10 @@
 package com.appy.business.user.form;
 
+import java.util.List;
+
 public class UserFormBO {
 	private long userId;
+	private int roleId;
 	private String login;
 	private String password;
 	private String confirmPassword;
@@ -9,6 +12,16 @@ public class UserFormBO {
 	private String firstname;
 	private String lastname;
 	
+	private List<Integer> specialties;	//Specialities of a doctor
+	
+	public int getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
+	}
+
 	public UserFormBO(){
 		super();
 	}
@@ -67,6 +80,10 @@ public class UserFormBO {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	
-	
+	public List<Integer> getSpecialties() {
+		return specialties;
+	}
+	public void setSpecialties(List<Integer> specialties) {
+		this.specialties = specialties;
+	}
 }
