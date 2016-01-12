@@ -31,3 +31,13 @@ CURRENT_TIMESTAMP(),
 CURRENT_TIMESTAMP(),
 'test@test.com',
 'foo/bar/location/img.png');
+
+
+-- SPECIALTIES_LK
+INSERT INTO `appy_poc`.`specialties_lk`
+(
+`name`,
+`description`)
+VALUES
+('radiologist',
+'radiologist description');
